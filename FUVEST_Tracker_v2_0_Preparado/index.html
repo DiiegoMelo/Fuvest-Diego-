@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>FUVEST Tracker 2.0 — Projeto IME</title>
+<title>FUVEST - DIEGO | Projeto Ciência da Computação</title>
 <meta name="robots" content="noindex,nofollow">
 <style>
 :root{--bg:#f4f6fa;--paper:#fff;--ink:#18213a;--muted:#6d7690;--line:#e4e8f0;--side:#111a32;--sideMuted:#a9b4ce;--teal:#0a856f;--tealLight:#e6f6f1;--blue:#4867b7;--amber:#b77922;--shadow:0 12px 42px rgba(34,48,78,.06);--radius:17px}
@@ -106,12 +106,42 @@ body.tracker-ready .cloud-auth{display:none}
 .cloud-conflict .actions button{border:1px solid #d1dae5;border-radius:10px;background:#f4f7fa;color:#1a3448;padding:11px;font-weight:700}
 .cloud-conflict .actions .danger{background:#d7f2ee;color:#0d645a;border-color:#ade1d7}
 @media(max-width:760px){.cloud-card{padding:22px}.cloud-session{justify-content:start}#cloudStatus{max-width:100%}}
+
+/* v2.1 — menu lateral recolhível */
+.side-head{display:flex;align-items:center;gap:5px;min-width:0}
+.side-head .brand{flex:1;min-width:0}
+.brand-copy{min-width:0}
+.sidebar-toggle{flex:none;width:32px;height:34px;border:1px solid #445371;border-radius:10px;color:#e8f1ff;background:#22304e;font-size:20px;line-height:1;display:grid;place-items:center}
+.sidebar-toggle:hover{background:#34476d}
+.nav-text{min-width:0}
+.layout.sidebar-collapsed{grid-template-columns:76px minmax(0,1fr)}
+.layout.sidebar-collapsed .sidebar{padding:23px 10px;gap:18px}
+.layout.sidebar-collapsed .side-head{flex-direction:column;align-items:center;gap:12px}
+.layout.sidebar-collapsed .side-head .brand{padding:0;flex:none}
+.layout.sidebar-collapsed .brand-copy,.layout.sidebar-collapsed .nav-text,.layout.sidebar-collapsed .sidebarFoot{display:none}
+.layout.sidebar-collapsed .navbtn{justify-content:center;padding:13px 8px}
+.layout.sidebar-collapsed .navbtn .glyph{width:auto}
+.layout.sidebar-collapsed .sidebar-toggle{width:44px}
+@media(max-width:760px){
+ .layout.sidebar-collapsed{display:block}
+ .layout.sidebar-collapsed .sidebar{padding:12px 13px;gap:10px}
+ .layout.sidebar-collapsed .side-head{flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+ .layout.sidebar-collapsed .side-head .brand{display:flex;flex:1;justify-content:flex-start}
+ .layout.sidebar-collapsed .brand-copy{display:block}
+ .layout.sidebar-collapsed .sidebar-toggle{width:36px}
+ .layout.sidebar-collapsed .sidebar nav{display:none}
+ .layout.sidebar-collapsed .nav-text{display:inline}
+}
+/* v2.1 — indicador de salvamento de práticas */
+.quiz-save-note{font-size:12px;color:#14725f;background:#e9f8f2;border:1px solid #c6e8dc;padding:9px 11px;border-radius:10px;line-height:1.5;margin:10px 0}
+.quiz-config .btn{min-height:34px}
+@media print{.sidebar-toggle{display:none!important}}
 </style>
 </head>
 <body>
 <div class="cloud-auth" id="cloudAuthScreen">
   <section class="cloud-card" aria-labelledby="cloudHeading">
-   <div class="eyebrow">Projeto IME · FUVEST 2028</div><h1 id="cloudHeading">FUVEST Tracker 2.0</h1>
+   <div class="eyebrow">Projeto Ciência da Computação.</div><h1 id="cloudHeading">FUVEST - DIEGO</h1>
    <p id="cloudIntro">Entre na sua conta para acessar o calendário, as questões e o progresso sincronizado.</p>
    <form id="cloudAuthForm">
      <label for="cloudEmail">E-mail</label><input id="cloudEmail" name="email" type="email" autocomplete="email" required/>
@@ -140,19 +170,22 @@ body.tracker-ready .cloud-auth{display:none}
 
 <div class="layout">
 <aside class="sidebar">
-  <div class="brand"><div class="brandmark">F</div><div><h1>FUVEST TRACKER</h1><span>Projeto IME · 2028</span></div></div>
-  <nav aria-label="Navegação principal">
-    <button class="navbtn active" data-page="overview"><span class="glyph">◈</span>Visão geral</button>
-    <button class="navbtn" data-page="calendar"><span class="glyph">▦</span>Calendário</button>
-    <button class="navbtn" data-page="results"><span class="glyph">▥</span>Progresso</button>
-    <button class="navbtn" data-page="settings"><span class="glyph">⚙</span>Configurações</button>
+  <div class="side-head">
+    <div class="brand"><div class="brandmark">F</div><div class="brand-copy"><h1>FUVEST - DIEGO</h1><span>Projeto Ciência da Computação.</span></div></div>
+    <button class="sidebar-toggle" id="sidebarToggle" type="button" aria-controls="sidebarNav" aria-expanded="true" aria-label="Recolher menu lateral" title="Recolher menu lateral">‹</button>
+  </div>
+  <nav id="sidebarNav" aria-label="Navegação principal">
+    <button class="navbtn active" data-page="overview" title="Visão geral"><span class="glyph">◈</span><span class="nav-text">Visão geral</span></button>
+    <button class="navbtn" data-page="calendar" title="Calendário"><span class="glyph">▦</span><span class="nav-text">Calendário</span></button>
+    <button class="navbtn" data-page="results" title="Progresso"><span class="glyph">▥</span><span class="nav-text">Progresso</span></button>
+    <button class="navbtn" data-page="settings" title="Configurações"><span class="glyph">⚙</span><span class="nav-text">Configurações</span></button>
   </nav>
   <div class="sidebarFoot"><strong>Missão: Ciência da Computação</strong>Calendário original importado do PDF de estudos. Pequenos avanços, todos os dias.</div>
 </aside>
 <main class="main">
   <header class="topbar">
-    <div><div class="eyebrow">Sua jornada até a USP</div><h2 id="pageTitle">Um dia de cada vez.</h2><p class="subtitle" id="pageSubtitle">Organize os estudos, veja seu avanço e continue a conversa com o Gman.</p></div>
-    <div class="actions"><div class="cloud-session"><span id="cloudStatus" role="status" aria-live="polite">Conectando...</span><button class="btn" id="cloudSignOut" type="button">Sair</button></div><button class="btn secondary" id="goChat">✦ Conversar com Gman</button><button class="btn" data-go="calendar">▦ Ver calendário</button></div>
+    <div><div class="eyebrow">Sua jornada até a USP</div><h2 id="pageTitle">Um dia de cada vez.</h2><p class="subtitle" id="pageSubtitle">Organize seus estudos e acompanhe sua evolução em Ciência da Computação.</p></div>
+    <div class="actions"><div class="cloud-session"><span id="cloudStatus" role="status" aria-live="polite">Conectando...</span><button class="btn" id="cloudSignOut" type="button">Sair</button></div><button class="btn" data-go="calendar">▦ Ver calendário</button></div>
   </header>
 
   <section id="view-overview" class="toggleview active">
@@ -185,18 +218,17 @@ body.tracker-ready .cloud-auth{display:none}
   <section id="view-results" class="toggleview">
     <div class="settingsGrid"><div class="panel pad"><div class="tinylabel">Progresso total</div><h3 id="resultDone">0 sessões</h3><div class="progressbar"><div class="progressfill" id="resultProgress"></div></div><p class="inlineDetail" id="resultMeta"></p></div><div class="panel pad"><div class="tinylabel">Tempo total de estudo</div><h3 id="resultTime">0h</h3><p class="inlineDetail">Registre o tempo nos dias estudados para acompanhar seu ritmo real, não apenas o planejado.</p></div></div>
     <div class="sectiontitle"><h3>Por mês</h3><small>Atividades concluídas / previstas</small></div><div class="panel pad" id="monthlyResult"></div>
+    <div class="sectiontitle"><h3>Práticas em andamento</h3><small>Continue de onde parou</small></div><div class="panel pad" id="quizDraftList"></div>
     <div class="sectiontitle"><h3>Resultados das práticas</h3><small>Questões objetivas e revisões</small></div><div class="panel pad"><div id="quizStats"></div><h3 style="margin:23px 0 8px">Revisões sugeridas</h3><p class="tip">Quando houver erros ou dúvidas, o Tracker sugere revisar o assunto após três dias.</p><div id="quizReviewList"></div></div><div class="sectiontitle"><h3>Como ler seus resultados</h3></div><div class="panel pad"><p class="inlineDetail">Marcar uma atividade como concluída indica que você a estudou, <b>não</b> que domina o conteúdo. Combine o acompanhamento com exercícios sem consulta, correção dos erros, redações e simulados.</p></div>
   </section>
 
   <section id="view-settings" class="toggleview">
     <div class="settingsGrid">
-      <div class="panel pad"><div class="settingshero"><div class="tinylabel label">Conexão com seu chat</div><h3>Converse com o Gman daqui</h3><p>Cole o endereço desta conversa do ChatGPT para abrir o mesmo histórico pelo botão do site. Não é uma integração automática com o conteúdo do chat.</p></div><div class="field"><label for="chatUrl">Endereço da conversa</label><input id="chatUrl" type="url" placeholder="https://chatgpt.com/c/..." autocomplete="off" /></div><div class="actions"><button class="btn primary" id="saveChatUrl">Salvar endereço</button><button class="btn" id="testChatUrl">Abrir conversa</button></div><p class="tip">No ChatGPT, copie o endereço <b>da barra do navegador</b> enquanto estiver nesta conversa. Não use o link de “Compartilhar”, pois ele pode abrir uma cópia compartilhada, não seu chat original.</p></div>
       <div class="panel pad"><div class="tinylabel">Data da prova</div><h3>Contagem regressiva</h3><div class="field"><label for="examDate">Primeira fase (data configurável)</label><input id="examDate" type="date" /></div><div class="field"><label><input type="checkbox" id="dateOfficial" style="width:auto;vertical-align:middle;margin-right:7px"/>Esta data foi confirmada oficialmente</label></div><button class="btn primary" id="saveExamDate">Salvar data</button><p class="tip">Começamos usando <b>01/11/2027 apenas como referência</b>. A FUVEST ainda precisa divulgar o dia oficial. Atualize a data quando houver confirmação.</p></div>
       <div class="panel pad"><div class="tinylabel">Seus dados</div><h3>Backup e restauração</h3><p class="inlineDetail">Seus dados são sincronizados com a nuvem enquanto estiver conectado. O backup JSON continua disponível para migração, proteção extra e recuperação.</p><div class="actions"><button class="btn primary" id="exportBackup">↓ Exportar backup</button><button class="btn" id="importBackup">↑ Importar backup</button><input type="file" id="backupInput" accept="application/json,.json" hidden/></div><p class="tip">O backup inclui as anotações e configurações salvas. Não publique esse arquivo.</p></div>
-      <div class="panel pad future"><div class="glyph">✦</div><div><div class="tinylabel">Fase futura</div><h3>Gman integrado por IA</h3><p class="inlineDetail">Depois poderemos desenvolver um assistente dentro do próprio site, conectado às suas tarefas e resultados por uma API. Essa versão terá conversa e armazenamento próprios; não herdará automaticamente este histórico do ChatGPT.</p><span class="tag">Ainda não implementado</span></div></div>
     </div>
   </section>
-  <footer class="footnote">FUVEST Tracker • versão 2.0 • Conteúdo do calendário importado do PDF “Cronograma FUVEST 2028 — Novembro/2026 a Novembro/2027”. A data da prova é provisória. O sistema não se comunica automaticamente com o ChatGPT nem com a FUVEST.</footer>
+  <footer class="footnote">FUVEST - DIEGO • versão 2.1 • Conteúdo do calendário importado do PDF “Cronograma FUVEST 2028 — Novembro/2026 a Novembro/2027”. A data da prova é provisória. O sistema não se comunica automaticamente com o ChatGPT nem com a FUVEST.</footer>
 </main></div><div id="flash" class="flash" role="status" aria-live="polite"></div>
 
 <div id="quizOverlay" class="quiz-overlay" hidden>
@@ -204,6 +236,8 @@ body.tracker-ready .cloud-auth{display:none}
   <div class="quiz-modal-top"><div><div class="eyebrow">Prática de fixação</div><h3 id="quizTitle">Estudo do dia</h3><p id="quizSubject" class="quiz-head-meta"></p></div><button id="quizClose" class="quiz-close" aria-label="Fechar prática">×</button></div>
       <div class="quiz-config"><label for="quizCount">Questões nesta sessão</label><select id="quizCount" aria-label="Número de questões"><option value="5">5 · Revisão rápida</option><option value="10">10 · Fixação</option><option value="15">15 · Sessão completa</option><option value="20">20 · Treinamento intensivo</option></select></div>
     <p id="quizBankInfo" class="quiz-bank-note" aria-live="polite"></p>
+    <p id="quizSaveNote" class="quiz-save-note" role="status">O andamento é salvo automaticamente neste navegador. Para continuar em outro dispositivo, aguarde o status “Sincronizado”.</p>
+    <div class="tinyactions"><button class="btn tiny" id="quizRestart" type="button">↻ Recomeçar esta prática</button></div>
     <div id="quizContent">
    <div class="quiz-progress"><div class="quiz-smallrow"><b id="quizStep">Questão 1 de 15</b><span><span id="quizLevel"></span> · <span id="quizType" class="quiz-type"></span></span></div><div class="quiz-progress-bar"><div id="quizBar" class="quiz-progress-fill"></div></div></div>
    <div id="quizQuestion" class="quiz-question"></div>
@@ -234,7 +268,7 @@ const parseDate=(s)=>{const [y,m,d]=s.split('-').map(Number);return new Date(y,m
 const dateStep=(s,n)=>{const d=parseDate(s);d.setDate(d.getDate()+n);return localDate(d)};
 const formatDate=(s,opt={day:'numeric',month:'long',year:'numeric'})=>parseDate(s).toLocaleDateString('pt-BR',opt);
 const today=localDate(new Date());
-const blankState=()=>({checked:{},moved:{},minutes:{},notes:{},custom:[],practice:{},chatUrl:'',examDate:'2027-11-01',official:false});
+const blankState=()=>({checked:{},moved:{},minutes:{},notes:{},custom:[],practice:{},quizDrafts:{},chatUrl:'',examDate:'2027-11-01',official:false});
 let state=blankState();
 // O estado é carregado somente após a autenticação no Supabase.
 let currentPage='overview';
@@ -244,15 +278,13 @@ const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const save=()=>{if(!window.trackerCloudUserId){toast('Faça login antes de registrar seus estudos.');return false}window.trackerCloudSave?.(state);try{localStorage.setItem(KEY+'-cloud-'+window.trackerCloudUserId,JSON.stringify(state))}catch(e){toast('Cópia local indisponível; confira a sincronização na nuvem.')}return true};
 let toastTimeout;function toast(msg){const el=$('flash');el.textContent=msg;el.style.display='block';clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.style.display='none',3200)}
-function validChatUrl(value){try{const u=new URL(value);return u.protocol==='https:'&&['chatgpt.com','chat.openai.com'].includes(u.hostname)&&/^\/c\/[^/]+/.test(u.pathname)}catch(e){return false}}
-function gotoChat(){if(!validChatUrl(state.chatUrl)){go('settings');$('chatUrl').focus();toast('Cole primeiro o link desta conversa nas configurações.');return}window.open(state.chatUrl,'_blank','noopener,noreferrer')}
 function titleClass(s){const c=s.toLowerCase();if(c.includes('mat'))return 'math';if(c.includes('lingua')||c.includes('portug')||c.includes('reda'))return 'lang';if(c.includes('bio')||c.includes('fís')||c.includes('quím')||c.includes('ciência'))return 'science';if(c.includes('hist')||c.includes('geo')||c.includes('filos')||c.includes('socio'))return 'human';return 'review'}
 function allTasks(){return BASE_SESSIONS.concat(state.custom||[]).map(t=>({...t,effectiveDate:state.moved[t.id]||t.date}));}
 function tasksForDay(dt){return allTasks().filter(t=>t.effectiveDate===dt)}
 function isDone(id){return !!state.checked[id]}
 const countDone=(tasks)=>tasks.filter(t=>isDone(t.id)).length;
 function setDone(id,val){state.checked[id]=val;save();render()}
-function deleteCustom(id){if(!confirm('Excluir esta atividade adicionada?'))return;state.custom=state.custom.filter(t=>t.id!==id);delete state.checked[id];delete state.moved[id];save();render()}
+function deleteCustom(id){if(!confirm('Excluir esta atividade adicionada?'))return;state.custom=state.custom.filter(t=>t.id!==id);delete state.checked[id];delete state.moved[id];if(state.quizDrafts)delete state.quizDrafts[id];save();render()}
 function moveTask(id,dt){if(!/^\d{4}-\d{2}-\d{2}$/.test(dt))return toast('Escolha uma data válida.');state.moved[id]=dt;save();toast('Atividade movida para '+formatDate(dt)+'.');render()}
 function fmtMin(n){n=Number(n)||0;const h=Math.floor(n/60),m=n%60;return h?`${h}h${m?pad(m):''}`:`${m}min`}
 const CUSTOM_GUIDES={
@@ -362,7 +394,7 @@ async function copyLessonSearch(term){
 
 function renderLesson(t,editing=false){
  const done=isDone(t.id),moveId='move-'+t.id,guide=lessonGuide(t);
- return `<article class="lesson ${done?'done':''}"><div class="lessonline"><span class="subject ${titleClass(t.subject)}">${esc(t.subject)}</span><span class="muted" style="font-size:11px">${t.source==='pdf'?'Plano original':'Adicionada'}</span></div><p>${esc(t.topic)}</p><div class="lessonactions"><button class="btn tiny ${done?'':'primary'}" data-complete="${esc(t.id)}">${done?'↶ Desmarcar':'✓ Concluído'}</button><button class="btn tiny secondary" data-practice="${esc(t.id)}">✎ Praticar</button>${editing?`<button class="btn tiny" data-move-toggle="${esc(t.id)}">↗ Mover</button>${t.source!=='pdf'?`<button class="btn tiny danger" data-delete="${esc(t.id)}">Excluir</button>`:''}`:''}</div>${quizAttemptSummary(t.id)}<details class="studyguide"><summary>▤ Detalhes do estudo</summary><div class="guidesection"><h4>O que você precisa aprender</h4><p>${esc(guide.objective)}</p></div><div class="guidesection"><h4>Como verificar que aprendeu</h4><ul>${guide.checkpoints.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul></div><div class="guidesection"><h4>Como praticar hoje</h4><p>${esc(guide.practice || 'Comece por exercícios de fixação; corrija os erros e só depois avance para questões da FUVEST.')}</p>${lessonSearchMarkup(t)}</div></details>${editing?`<div class="movebox" id="${esc(moveId)}"><input aria-label="Nova data" type="date" value="${esc(dateStep(selectedDate,1))}" min="2026-11-23" max="2028-12-31"><button class="btn tiny secondary" data-move-save="${esc(t.id)}">Confirmar</button></div>`:''}</article>`
+ return `<article class="lesson ${done?'done':''}"><div class="lessonline"><span class="subject ${titleClass(t.subject)}">${esc(t.subject)}</span><span class="muted" style="font-size:11px">${t.source==='pdf'?'Plano original':'Adicionada'}</span></div><p>${esc(t.topic)}</p><div class="lessonactions"><button class="btn tiny ${done?'':'primary'}" data-complete="${esc(t.id)}">${done?'↶ Desmarcar':'✓ Concluído'}</button><button class="btn tiny secondary" data-practice="${esc(t.id)}">${state.quizDrafts?.[t.id]?.questions?.length?'↪ Retomar prática':'✎ Praticar'}</button>${editing?`<button class="btn tiny" data-move-toggle="${esc(t.id)}">↗ Mover</button>${t.source!=='pdf'?`<button class="btn tiny danger" data-delete="${esc(t.id)}">Excluir</button>`:''}`:''}</div>${quizAttemptSummary(t.id)}<details class="studyguide"><summary>▤ Detalhes do estudo</summary><div class="guidesection"><h4>O que você precisa aprender</h4><p>${esc(guide.objective)}</p></div><div class="guidesection"><h4>Como verificar que aprendeu</h4><ul>${guide.checkpoints.map(x=>'<li>'+esc(x)+'</li>').join('')}</ul></div><div class="guidesection"><h4>Como praticar hoje</h4><p>${esc(guide.practice || 'Comece por exercícios de fixação; corrija os erros e só depois avance para questões da FUVEST.')}</p>${lessonSearchMarkup(t)}</div></details>${editing?`<div class="movebox" id="${esc(moveId)}"><input aria-label="Nova data" type="date" value="${esc(dateStep(selectedDate,1))}" min="2026-11-23" max="2028-12-31"><button class="btn tiny secondary" data-move-save="${esc(t.id)}">Confirmar</button></div>`:''}</article>`
 }
 // FUVEST Tracker — módulo local de prática: questões autorais, sem API.
 // Banco contextual para conteúdos introdutórios; outros dias usam recuperação ativa, sem correção automática fictícia.
@@ -439,7 +471,7 @@ function buildPracticeQuestions(t,count){
   while(ordered.length<count){const entry=guidance[ordered.length-selected.length] || guidance[ordered.length];ordered.push({...entry,type:'reflection'});}
   return ordered;
 }
-const quizState={task:null,questions:[],position:0,responses:[],finished:false};
+const quizState={task:null,questions:[],position:0,responses:[],finished:false,selections:{},writings:{},criteriaShown:{}};
 const allowedQuizCounts=[5,10,15,20];
 let quizCount=allowedQuizCounts.includes(Number(state.quizCount))?Number(state.quizCount):15;
 function updateQuizBankNote(){
@@ -450,33 +482,66 @@ function updateQuizBankNote(){
     `${objective} objetiva(s) com gabarito e ${opened} aberta(s) para autoavaliação. `+
     (opened?'Abertas não são corrigidas por IA. ':'')+'Questões autorais; não são questões oficiais da FUVEST.';
 }
+// Cada prática em andamento fica no estado do usuário, sincronizado pelo Supabase.
+// Mantemos o conjunto exato de questões para que atualizações do banco não mudem uma sessão iniciada.
+function validPracticeDraft(d){
+ return !!(d&&Array.isArray(d.questions)&&allowedQuizCounts.includes(d.questions.length)&&
+   Array.isArray(d.responses)&&d.responses.length===d.questions.length&&
+   Number.isInteger(d.position)&&d.position>=0&&d.position<d.questions.length&&
+   d.questions.every(q=>q&&typeof q.id==='string'&&['choice','reflection'].includes(q.type)));
+}
+function savePracticeDraft(){
+ if(!quizState.task||quizState.finished)return;
+ state.quizDrafts=state.quizDrafts||{};
+ state.quizDrafts[quizState.task.id]={
+  questions:quizState.questions,position:quizState.position,responses:quizState.responses,
+  selections:quizState.selections,writings:quizState.writings,criteriaShown:quizState.criteriaShown,
+  updatedAt:new Date().toISOString()
+ };
+ save();
+}
+function practiceHasWork(){
+ return quizState.responses.some(Boolean)||Object.keys(quizState.selections).length>0||
+ Object.values(quizState.writings).some(v=>String(v).trim())||Object.keys(quizState.criteriaShown).length>0;
+}
 function preparePractice(){
-  quizState.questions=buildPracticeQuestions(quizState.task,quizCount);
-  quizState.position=0;quizState.responses=Array(quizState.questions.length).fill(null);quizState.finished=false;
-  delete quizState._writing;
-  $('quizContent').hidden=false;$('quizFinish').hidden=true;
-  updateQuizBankNote();renderPractice();
+ quizState.questions=buildPracticeQuestions(quizState.task,quizCount);
+ quizState.position=0;quizState.responses=Array(quizState.questions.length).fill(null);quizState.finished=false;
+ quizState.selections={};quizState.writings={};quizState.criteriaShown={};
+ $('quizContent').hidden=false;$('quizFinish').hidden=true;
+ updateQuizBankNote();renderPractice();savePracticeDraft();
 }
 function openPractice(id){
-  const t=allTasks().find(x=>x.id===id);if(!t)return;
-  quizState.task=t;
-  $('quizCount').value=String(quizCount);
-  $('quizTitle').textContent=t.topic;
-  $('quizSubject').textContent=t.subject+' • '+formatDate(t.effectiveDate)+' · Prática offline';
-  $('quizOverlay').hidden=false;document.body.classList.add('quiz-open');
-  preparePractice();$('quizClose').focus();
+ const t=allTasks().find(x=>x.id===id);if(!t)return;
+ quizState.task=t;
+ $('quizTitle').textContent=t.topic;
+ $('quizSubject').textContent=t.subject+' • '+formatDate(t.effectiveDate)+' · Prática de fixação';
+ $('quizOverlay').hidden=false;document.body.classList.add('quiz-open');
+ const draft=state.quizDrafts?.[id];
+ if(validPracticeDraft(draft)){
+  quizState.questions=draft.questions;quizState.position=draft.position;
+  quizState.responses=draft.responses;quizState.selections=draft.selections||{};
+  quizState.writings=draft.writings||{};quizState.criteriaShown=draft.criteriaShown||{};
+  quizState.finished=false;quizCount=draft.questions.length;
+  $('quizContent').hidden=false;$('quizFinish').hidden=true;
+  updateQuizBankNote();renderPractice();
+ }else{preparePractice();}
+ $('quizCount').value=String(quizCount);
+ $('quizClose').focus();
 }
 $('quizCount').addEventListener('change',function(){
-  const newCount=Number(this.value);
-  if(!allowedQuizCounts.includes(newCount)){this.value=String(quizCount);return;}
-  if(quizState.task && quizState.responses.some(Boolean) && !confirm('Alterar a quantidade reiniciará esta prática. Continuar?')){
-    this.value=String(quizCount);return;
-  }
-  quizCount=newCount;
-  state.quizCount=quizCount;save();
-  if(quizState.task)preparePractice();
+ const newCount=Number(this.value);
+ if(!allowedQuizCounts.includes(newCount)){this.value=String(quizCount);return;}
+ if(quizState.task&&practiceHasWork()&&!confirm('Alterar a quantidade descartará as respostas desta prática em andamento. Continuar?')){
+  this.value=String(quizCount);return;
+ }
+ quizCount=newCount;state.quizCount=quizCount;save();
+ if(quizState.task)preparePractice();
 });
-function closePractice(){ $('quizOverlay').hidden=true;document.body.classList.remove('quiz-open');quizState.task=null; }
+function closePractice(){
+ if(quizState.task&&!quizState.finished)savePracticeDraft();
+ $('quizOverlay').hidden=true;document.body.classList.remove('quiz-open');quizState.task=null;
+}
 function renderPractice(){
  const q=quizState.questions[quizState.position];
  $('quizStep').textContent=`Questão ${quizState.position+1} de ${quizState.questions.length}`;
@@ -486,18 +551,25 @@ function renderPractice(){
  $('quizQuestion').textContent=q.q;
  const prev=quizState.responses[quizState.position];
  if(q.type==='choice'){
-  $('quizAnswer').innerHTML=`<div class="quiz-options">${q.options.map((o,i)=>`<label class="quiz-opt"><input type="radio" name="quizSelect" value="${i}" ${prev&&prev.choice===i?'checked':''} ${prev?'disabled':''} /><span>${String.fromCharCode(65+i)}) ${esc(o)}</span></label>`).join('')}</div>`;
+  $('quizAnswer').innerHTML=`<div class="quiz-options">${q.options.map((o,i)=>`<label class="quiz-opt"><input type="radio" name="quizSelect" value="${i}" ${(prev?prev.choice:quizState.selections[quizState.position])===i?'checked':''} ${prev?'disabled':''} /><span>${String.fromCharCode(65+i)}) ${esc(o)}</span></label>`).join('')}</div>`;
   $('quizFeedback').hidden=!prev;
   if(prev){const good=prev.choice===q.answer;$('quizFeedback').innerHTML=`<b class="${good?'good':'bad'}">${good?'✓ Resposta correta':'✕ Resposta incorreta'}</b><p><b>Gabarito: ${String.fromCharCode(65+q.answer)})</b> ${esc(q.options[q.answer])}</p><p>${esc(q.why)}</p>`}
   $('quizCheck').textContent=prev?'Resposta corrigida':'Corrigir resposta';$('quizCheck').disabled=!!prev;
   $('quizSelfActions').hidden=true;
  }else{
-  $('quizAnswer').innerHTML=`<label class="quiz-write-label" for="quizWrite">Escreva sua resposta antes de consultar os critérios:</label><textarea id="quizWrite" class="quiz-write" rows="4" ${prev?'disabled':''} placeholder="Responda sem consultar suas anotações...">${esc(prev?.text||'')}</textarea>`;
+  $('quizAnswer').innerHTML=`<label class="quiz-write-label" for="quizWrite">Escreva sua resposta antes de consultar os critérios:</label><textarea id="quizWrite" class="quiz-write" rows="4" ${prev?'disabled':''} placeholder="Responda sem consultar suas anotações...">${esc(prev?.text??quizState.writings[quizState.position]??'')}</textarea>`;
   $('quizFeedback').hidden=!prev;
   if(prev)$('quizFeedback').innerHTML=`<b>Critérios de conferência</b><p>${esc(q.criteria)}</p><p>${prev.ok?'✓ Você avaliou que conseguiu explicar.':'↻ Você sinalizou que precisa revisar.'} Essa é uma autoavaliação, não uma correção automática da resposta.</p>`;
   $('quizCheck').textContent=prev?'Critérios exibidos':'Ver critérios';$('quizCheck').disabled=!!prev;
-  $('quizSelfActions').hidden=!!prev;
-  $('quizSelfActions').style.display=prev?'none':'none';
+  const shown=!!quizState.criteriaShown[quizState.position]&&!prev;
+  if(shown){
+   $('quizFeedback').hidden=false;
+   $('quizFeedback').innerHTML=`<b>Critérios de conferência</b><p>${esc(q.criteria)}</p><p>Compare com sua resposta. Você conseguiu atender a esses critérios?</p>`;
+   $('quizWrite').disabled=true;
+  }
+  $('quizSelfActions').hidden=!!prev||!shown;
+  $('quizSelfActions').style.display=shown?'flex':'none';
+  $('quizCheck').disabled=!!prev||shown;
  }
  $('quizPrev').disabled=quizState.position===0;
  $('quizNext').textContent=quizState.position===quizState.questions.length-1?'Finalizar prática':'Próxima questão';
@@ -511,25 +583,28 @@ function checkPractice(){
  if(q.type==='choice'){
   const picked=document.querySelector('input[name="quizSelect"]:checked');if(!picked){toast('Escolha uma alternativa antes de corrigir.');return}
   quizState.responses[quizState.position]={type:'choice',id:q.id,choice:Number(picked.value),correct:Number(picked.value)===q.answer};
-  renderPractice();
+  renderPractice();savePracticeDraft();
  }else{
   const textValue=$('quizWrite')?.value.trim()||'';
   if(textValue.length<15){toast('Escreva uma resposta antes de conferir os critérios.');return}
   // Ainda não salva, pois o usuário precisa escolher sua autoavaliação após ver os critérios.
-  quizState._writing=textValue;
+  quizState.writings[quizState.position]=textValue.slice(0,3000);
+  quizState.criteriaShown[quizState.position]=true;
   $('quizFeedback').hidden=false;$('quizFeedback').innerHTML=`<b>Critérios de conferência</b><p>${esc(q.criteria)}</p><p>Compare com sua resposta. Você conseguiu atender a esses critérios?</p>`;
   $('quizSelfActions').hidden=false;$('quizSelfActions').style.display='flex';$('quizCheck').disabled=true;
-  $('quizWrite').disabled=true;
+  $('quizWrite').disabled=true;savePracticeDraft();
  }
 }
 function selfRate(ok){
- const q=quizState.questions[quizState.position];if(q.type!=='reflection'||!quizState._writing)return;
- quizState.responses[quizState.position]={type:'reflection',id:q.id,text:quizState._writing.slice(0,3000),ok};
- delete quizState._writing;renderPractice();
+ const q=quizState.questions[quizState.position];
+ const writing=quizState.writings[quizState.position]||'';
+ if(q.type!=='reflection'||!writing||!quizState.criteriaShown[quizState.position])return;
+ quizState.responses[quizState.position]={type:'reflection',id:q.id,text:writing.slice(0,3000),ok};
+ delete quizState.criteriaShown[quizState.position];renderPractice();savePracticeDraft();
 }
 function nextPractice(){
  if(!quizState.responses[quizState.position])return;
- if(quizState.position<quizState.questions.length-1){quizState.position++;renderPractice();return}
+ if(quizState.position<quizState.questions.length-1){quizState.position++;renderPractice();savePracticeDraft();return}
  finishPractice();
 }
 function finishPractice(){
@@ -538,7 +613,8 @@ function finishPractice(){
  if(!state.practice||typeof state.practice!=='object')state.practice={};
  const existing=Array.isArray(state.practice[quizState.task.id])?state.practice[quizState.task.id]:[];
  state.practice[quizState.task.id]=[...existing,attempt].slice(-20);
- save(); quizState.finished=true;
+ if(state.quizDrafts)delete state.quizDrafts[quizState.task.id];
+ quizState.finished=true;save();
  $('quizContent').hidden=true;$('quizFinish').hidden=false;
  $('quizFinish').innerHTML=`<div class="quiz-finish-stat"><strong>${objective.length?right+"/"+objective.length:"—"}</strong><span>${objective.length?"questões objetivas corrigidas":"sem questões objetivas nesta sessão"}</span></div><p>${self.length?`Você também respondeu ${self.length} questão(ões) discursiva(s) e se autoavaliou em ${self.filter(r=>r.ok).length}.`:''}</p><p>${weak.length?`<b>Revisão sugerida:</b> ${esc(formatDate(attempt.reviewDate))}. Você marcou ${weak.length} ponto(s) para revisar.`:'Ótimo registro. Refaça algumas questões daqui a alguns dias para verificar se reteve o conteúdo.'}</p><div class="actions"><button class="btn primary" id="quizBackToDay">Voltar ao calendário</button><button class="btn" id="quizTryAgain">Refazer prática</button></div><p class="tip">A pontuação conta somente questões objetivas com gabarito. Questões abertas são autoavaliações, não notas atribuídas por IA.</p>`;
  renderTop();if(currentPage==='results')renderResults();else if(currentPage==='calendar')renderCalendar();
@@ -550,6 +626,11 @@ function quizAttemptSummary(id){
  return `<p class="quiz-attempt">Última prática: <b>${esc(detail)}</b>${last.needsReview?' · <span>revisar</span>':' · registrada'}</p>`;
 }
 function renderPracticeStats(){
+ const drafts=Object.entries(state.quizDrafts||{}).filter(([id,d])=>validPracticeDraft(d)&&allTasks().some(t=>t.id===id));
+ $('quizDraftList').innerHTML=drafts.length?drafts.map(([id,d])=>{
+  const task=allTasks().find(t=>t.id===id);const done=d.responses.filter(Boolean).length;
+  return `<div class="review-item"><div><b>${esc(task.topic)}</b><small>${done} de ${d.questions.length} questões concluídas · próxima: ${d.position+1}</small></div><button class="btn tiny secondary" data-practice="${esc(id)}">↪ Retomar</button></div>`;
+ }).join(''):'<div class="empty">Você não tem nenhuma prática em andamento.</div>';
  const all=Object.entries(state.practice||{}).flatMap(([id,v])=>Array.isArray(v)?v.map(at=>({id,...at})):[]);
  const objective=all.reduce((sum,r)=>sum+(r.objective||0),0),correct=all.reduce((sum,r)=>sum+(r.correct||0),0);
  $('quizStats').innerHTML=`<div class="quiz-result-grid"><div><span>Práticas realizadas</span><strong>${all.length}</strong></div><div><span>Questões objetivas</span><strong>${objective}</strong></div><div><span>Aproveitamento objetivo</span><strong>${objective?Math.round(correct/objective*100)+'%':'—'}</strong></div></div>`;
@@ -567,13 +648,28 @@ document.addEventListener('click',ev=>{
  if(b.id==='quizSelfYes'){selfRate(true);return}
  if(b.id==='quizSelfNo'){selfRate(false);return}
  if(b.id==='quizNext'){nextPractice();return}
- if(b.id==='quizPrev'){if(quizState.position>0){quizState.position--;renderPractice()}return}
+ if(b.id==='quizPrev'){if(quizState.position>0){quizState.position--;renderPractice();savePracticeDraft()}return}
+ if(b.id==='quizRestart'){
+  if(quizState.task&&(!practiceHasWork()||confirm('Recomeçar? As respostas desta prática em andamento serão descartadas.'))){preparePractice();}
+  return;
+ }
  if(b.id==='quizTryAgain'){openPractice(quizState.task.id);return}
+});
+// Salva também escolhas ainda não corrigidas e textos enquanto são digitados.
+$('quizAnswer').addEventListener('change',ev=>{
+ if(quizState.task&&ev.target.matches('input[name="quizSelect"]')){
+  quizState.selections[quizState.position]=Number(ev.target.value);savePracticeDraft();
+ }
+});
+$('quizAnswer').addEventListener('input',ev=>{
+ if(quizState.task&&ev.target.id==='quizWrite'){
+  quizState.writings[quizState.position]=ev.target.value.slice(0,3000);savePracticeDraft();
+ }
 });
 $('quizOverlay').addEventListener('click',ev=>{if(ev.target===$('quizOverlay'))closePractice()});
 document.addEventListener('keydown',ev=>{if(ev.key==='Escape'&&!$('quizOverlay').hidden)closePractice()});
 
-const pageData={overview:['Um dia de cada vez.','Organize os estudos, veja seu avanço e continue a conversa com o Gman.'],calendar:['Seu calendário de estudos.','Assuntos reais do cronograma, distribuídos de novembro de 2026 a novembro de 2027.'],results:['Acompanhe sua evolução.','Registre o esforço, mas avalie também o que você consegue resolver sozinho.'],settings:['Ajustes do seu Tracker.','Personalize a data da prova, o link desta conversa e os backups.']};
+const pageData={overview:['Um dia de cada vez.','Organize seus estudos e acompanhe sua evolução em Ciência da Computação.'],calendar:['Seu calendário de estudos.','Assuntos reais do cronograma, distribuídos de novembro de 2026 a novembro de 2027.'],results:['Acompanhe sua evolução.','Registre o esforço, mas avalie também o que você consegue resolver sozinho.'],settings:['Ajustes do seu Tracker.','Personalize a data da prova e seus backups.']};
 function go(p){if(!pageData[p])return;currentPage=p;document.querySelectorAll('.toggleview').forEach(el=>el.classList.toggle('active',el.id==='view-'+p));document.querySelectorAll('[data-page]').forEach(el=>el.classList.toggle('active',el.dataset.page===p));$('pageTitle').textContent=pageData[p][0];$('pageSubtitle').textContent=pageData[p][1];render();window.scrollTo({top:0,behavior:'smooth'})}
 function renderTop(){const completed=countDone(allTasks());const total=allTasks().length;const pct=total?Math.round(completed/total*100):0;const days=Math.round((parseDate(state.examDate)-parseDate(today))/86400000);$('countdown').textContent=days>=0?days:'Encerrada';$('countdownNote').textContent=state.official?'Data marcada como oficial':'Data de referência';$('dateNotice').innerHTML=state.official?'Data da primeira fase configurada como <b>oficial por você</b>: '+esc(formatDate(state.examDate))+'.':'A primeira fase em <b>'+esc(formatDate(state.examDate))+'</b> é uma <b>data de referência, não confirmada oficialmente</b>. Atualize nas configurações quando a FUVEST publicar a data real.';$('completedNumber').textContent=completed;$('completedNote').textContent=`de ${total} sessões planejadas`;$('studiedHours').textContent=fmtMin(Object.values(state.minutes).reduce((a,b)=>a+(Number(b)||0),0));$('pctTag').textContent=pct+'%';$('pctText').textContent=pct+'%';$('globalProgress').style.width=pct+'%';$('readingToday').textContent=MONTH_INFO[today.slice(0,7)]?.reading||'Confira a leitura do mês no calendário.';
 const showDate=today<'2026-11-23'?'2026-11-23':today>'2027-11-30'?'2027-11-30':today;$('todayTitle').textContent=formatDate(showDate,{weekday:'long',day:'numeric',month:'long'});$('todayLessons').innerHTML=tasksForDay(showDate).map(t=>renderLesson(t)).join('')||'<div class="empty">Sem atividades planejadas para este dia.</div>';
@@ -581,7 +677,7 @@ const latest=Array.from({length:7},(_,i)=>dateStep(today,i-6));const vals=latest
 function renderCalendar(){const [year,month]=currentMonth.split('-').map(Number);$('monthTitle').textContent=new Date(year,month-1,1).toLocaleDateString('pt-BR',{month:'long',year:'numeric'});$('monthReading').textContent=MONTH_INFO[currentMonth]?.reading||'Sem leitura prevista neste mês.';$('monthFocus').textContent=MONTH_INFO[currentMonth]?.focus||' ';$('prevMonth').disabled=currentMonth==='2026-11';$('nextMonth').disabled=currentMonth==='2027-11';const days=new Date(year,month,0).getDate(),before=(new Date(year,month-1,1).getDay()+6)%7;let html='';for(let i=0;i<before;i++)html+='<div class="day blank"></div>';for(let d=1;d<=days;d++){const dt=`${year}-${pad(month)}-${pad(d)}`,tasks=tasksForDay(dt),c=countDone(tasks),isSelected=dt===selectedDate,active=!!tasks.length;const shown=tasks[0];html+=`<button class="day ${isSelected?'selected':''} ${dt===today?'today':''} ${active?'':'disabled'}" data-select-day="${dt}" aria-label="${d} de ${formatDate(dt,{month:'long'})}: ${tasks.length} atividades"><span class="daynum">${d}${active?`<i class="dot ${c===tasks.length?'completed':c?'partial':''}"></i>`:''}</span>${shown?`<span class="daytitle subject ${titleClass(shown.subject)}">${esc(shown.subject)}</span><span class="daytopic">${esc(shown.topic)}</span><span class="mins">${c}/${tasks.length} concluído(s)</span>`:''}</button>`} $('calendarGrid').innerHTML=html;renderDay()}
 function renderDay(){const ts=tasksForDay(selectedDate);$('selectedDateTitle').textContent=formatDate(selectedDate,{weekday:'long',day:'numeric',month:'long'});$('selectedDayBadge').textContent=ts.length+' atividade(s)';$('selectedLessons').innerHTML=ts.map(t=>renderLesson(t,true)).join('')||'<div class="empty">Nenhuma atividade neste dia. Adicione uma abaixo ou selecione outra data.</div>';$('studyMinutes').value=Number(state.minutes[selectedDate])||0;$('dayNotes').value=state.notes[selectedDate]||''}
 function renderResults(){renderPracticeStats();const ts=allTasks(),done=countDone(ts),pct=ts.length?Math.round(done/ts.length*100):0;$('resultDone').textContent=done+' de '+ts.length+' sessões';$('resultProgress').style.width=pct+'%';$('resultMeta').textContent=pct+'% do total de sessões cadastradas.';$('resultTime').textContent=fmtMin(Object.values(state.minutes).reduce((a,b)=>a+(Number(b)||0),0));const months=Object.keys(MONTH_INFO).sort();$('monthlyResult').innerHTML=months.map(m=>{const ts2=ts.filter(t=>t.effectiveDate.startsWith(m));const c=countDone(ts2),p=ts2.length?Math.round(c/ts2.length*100):0;return `<div style="margin:0 0 20px"><div class="barrow"><b>${esc(new Date(Number(m.slice(0,4)),Number(m.slice(5,7))-1,1).toLocaleDateString('pt-BR',{month:'long',year:'numeric'}))}</b><span class="muted">${c}/${ts2.length} · ${p}%</span></div><div class="progressbar"><div class="progressfill" style="width:${p}%"></div></div></div>`}).join('')}
-function renderSettings(){$('chatUrl').value=state.chatUrl||'';$('examDate').value=state.examDate||'2027-11-01';$('dateOfficial').checked=!!state.official}
+function renderSettings(){$('examDate').value=state.examDate||'2027-11-01';$('dateOfficial').checked=!!state.official}
 function renderSearch(){const q=$('searchTopic').value.trim().toLocaleLowerCase('pt-BR');if(!q){$('searchResults').innerHTML='<p class="tip">Digite para encontrar e abrir atividades em qualquer mês.</p>';return}const found=allTasks().filter(t=>(t.topic+' '+t.subject).toLocaleLowerCase('pt-BR').includes(q)).slice(0,24);$('searchResults').innerHTML=found.length?found.map(t=>`<button class="searchitem" data-find-day="${esc(t.effectiveDate)}"><span>${esc(formatDate(t.effectiveDate))}</span><b>${esc(t.subject)}</b><span>${esc(t.topic)}</span></button>`).join(''):'<p class="tip">Nenhuma atividade encontrada.</p>'}
 function render(){renderTop();if(currentPage==='calendar')renderCalendar();else if(currentPage==='results')renderResults();else if(currentPage==='settings')renderSettings();else renderSearch()}
 document.addEventListener('click',(ev)=>{
@@ -596,7 +692,6 @@ document.addEventListener('click',(ev)=>{
  if(target.dataset.delete){deleteCustom(target.dataset.delete);return}
  if(target.dataset.addMin){state.minutes[selectedDate]=(Number(state.minutes[selectedDate])||0)+Number(target.dataset.addMin);save();renderDay();renderTop();return}
  });
-$('goChat').onclick=gotoChat;$('testChatUrl').onclick=()=>{const v=$('chatUrl').value.trim();if(validChatUrl(v)){window.open(v,'_blank','noopener,noreferrer')}else toast('Use o endereço original: https://chatgpt.com/c/...')};$('saveChatUrl').onclick=()=>{const u=$('chatUrl').value.trim();if(u&&!validChatUrl(u))return toast('Cole a URL desta conversa, começando com https://chatgpt.com/c/');state.chatUrl=u;save();toast(u?'Conversa vinculada ao botão!':'Endereço removido.');};
 $('saveExamDate').onclick=()=>{const d=$('examDate').value;if(!/^20\d{2}-\d{2}-\d{2}$/.test(d))return toast('Escolha uma data válida.');state.examDate=d;state.official=$('dateOfficial').checked;save();render();toast('Data atualizada.')};
 $('prevMonth').onclick=()=>changeMonth(-1);$('nextMonth').onclick=()=>changeMonth(1);function changeMonth(step){const [y,m]=currentMonth.split('-').map(Number),d=new Date(y,m-1+step,1);const next=localDate(d).slice(0,7);if(next<'2026-11'||next>'2027-11')return;currentMonth=next;selectedDate=currentMonth+'-01';render()}
 $('goTodayMonth').onclick=()=>{selectedDate=today<'2026-11-23'?'2026-11-23':today>'2027-11-30'?'2027-11-30':today;currentMonth=selectedDate.slice(0,7);render()};$('openToday').onclick=()=>{selectedDate=today<'2026-11-23'?'2026-11-23':today>'2027-11-30'?'2027-11-30':today;currentMonth=selectedDate.slice(0,7);go('calendar')};
@@ -606,8 +701,28 @@ $('addTask').onclick=()=>{const topic=$('customTopic').value.trim();if(!topic)re
 $('searchTopic').oninput=renderSearch;
 $('exportBackup').onclick=()=>{const content=JSON.stringify({version:1,exportedAt:new Date().toISOString(),state},null,2);const blob=new Blob([content],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fuvest-tracker-backup-'+today+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500)};
 $('importBackup').onclick=()=>$('backupInput').click();$('backupInput').onchange=async function(){const f=this.files?.[0];if(!f)return;try{const obj=JSON.parse(await f.text());if(obj.version!==1||!obj.state||typeof obj.state!=='object'||!Array.isArray(obj.state.custom))throw Error('Arquivo inválido');if(!confirm('Substituir dados atuais pelos dados do backup?'))return;state={...blankState(),...obj.state};save();render();toast('Backup restaurado.')}catch(e){toast('Não foi possível importar esse backup.')}finally{this.value=''}};
+// Menu recolhível. Preferência visual local, sem afetar o progresso da nuvem.
+const sidebarLayout=document.querySelector('.layout');
+function setSidebarCollapsed(collapsed){
+ sidebarLayout.classList.toggle('sidebar-collapsed',collapsed);
+ const toggle=$('sidebarToggle');
+ toggle.setAttribute('aria-expanded',String(!collapsed));
+ toggle.setAttribute('aria-label',collapsed?'Expandir menu lateral':'Recolher menu lateral');
+ toggle.title=collapsed?'Expandir menu lateral':'Recolher menu lateral';
+ toggle.textContent=collapsed?'☰':'‹';
+ try{localStorage.setItem('fuvest-sidebar-collapsed',collapsed?'1':'0')}catch(_){}
+}
+$('sidebarToggle').onclick=()=>setSidebarCollapsed(!sidebarLayout.classList.contains('sidebar-collapsed'));
+try{setSidebarCollapsed(localStorage.getItem('fuvest-sidebar-collapsed')==='1')}catch(_){setSidebarCollapsed(false)}
 // Interface controlada pelo módulo de sincronização: nenhum dado pessoal no HTML público.
-window.trackerCloudApply=(snapshot)=>{state={...blankState(),...(snapshot||{})};render();};
+window.trackerCloudApply=(snapshot)=>{
+ // Nunca exibe uma prática de outra conta depois de trocar de usuário.
+ $('quizOverlay').hidden=true;document.body.classList.remove('quiz-open');quizState.task=null;
+ state={...blankState(),...(snapshot||{})};
+ if(!state.quizDrafts||typeof state.quizDrafts!=='object')state.quizDrafts={};
+ quizCount=allowedQuizCounts.includes(Number(state.quizCount))?Number(state.quizCount):15;
+ render();
+};
 window.trackerCloudEmpty=()=>blankState();
 render();
 </script>
